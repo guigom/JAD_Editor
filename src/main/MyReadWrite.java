@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class MyReadWrite 
 {
-	
+	// TODO: Klappt der commit um 22:35?
 	//Profile aus dem Ordner auslesen
 	public static String[][] getProfiles()
 	{

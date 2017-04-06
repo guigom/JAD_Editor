@@ -2,6 +2,12 @@ _name
 Profil 1
 _desc
 Profil für die Domäne Ost
+_attr
+Name
+Surname
+SamAccountName
+Description
+Enabled
 _ou
 Abteilung 1,"OU=Abteilung 1,OU=Firma,DC=bib,DC=loc"
 Abteilung 2,"OU=Abteilung 2,OU=Firma,DC=bib,DC=loc"

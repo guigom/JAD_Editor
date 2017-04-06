@@ -14,6 +14,8 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FormAbout extends JFrame {
 
@@ -50,6 +52,12 @@ public class FormAbout extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btn_ok = new JButton("OK");
+		btn_ok.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				TestArrayList.getArrayList();
+			}
+		});
 		btn_ok.setBounds(398, 306, 96, 32);
 		contentPane.add(btn_ok);
 		

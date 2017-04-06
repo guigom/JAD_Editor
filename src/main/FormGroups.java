@@ -35,7 +35,7 @@ public class FormGroups extends JFrame {
 	 * Create the frame.
 	 */
 	public FormGroups() {
-		setTitle("Gruppen");
+		setTitle("Gruppen verwalten");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 386, 512);
 		frm_groups = new JPanel();

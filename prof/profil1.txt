@@ -1,0 +1,9 @@
+_name
+Profil 1
+_desc
+Profil für die Domäne Ost
+_ou
+Abteilung 1,"OU=Abteilung 1,OU=Firma,DC=bib,DC=loc"
+Abteilung 2,"OU=Abteilung 2,OU=Firma,DC=bib,DC=loc"
+_groups
+Gruppe 1,"CN=Domänen-Benutzer,CN=Users,DC=bib,DC=loc"

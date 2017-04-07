@@ -39,7 +39,7 @@ public class FormMain extends JFrame {
 	 * Create the frame.
 	 */
 	public FormMain() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\logo.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./img/logo.png"));
 		setTitle("JAD Editor");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,17 +55,23 @@ public class FormMain extends JFrame {
 		frm_main.add(tbl_main);
 		
 		JButton btn_add = new JButton("Eintrag hinzuf\u00FCgen");
-		btn_add.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Plus-32.png"));
+		btn_add.setIcon(new ImageIcon("./img/Plus-32.png"));
+		btn_add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FormAdd form = new FormAdd();
+				form.setVisible(true);
+			}
+		});
 		btn_add.setBounds(816, 16, 192, 40);
 		frm_main.add(btn_add);
 		
 		JButton btn_del = new JButton("Eintrag entfernen");
-		btn_del.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Minus-32.png"));
+		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
 		btn_del.setBounds(816, 72, 192, 40);
 		frm_main.add(btn_del);
 		
 		JButton btn_export = new JButton("Export");
-		btn_export.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Share 3-32.png"));
+		btn_export.setIcon(new ImageIcon("./img/Share 3-32.png"));
 		btn_export.setBounds(814, 680, 192, 40);
 		frm_main.add(btn_export);
 		
@@ -76,7 +82,7 @@ public class FormMain extends JFrame {
 				form.setVisible(true);
 			}
 		});
-		btn_about.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Info-32.png"));
+		btn_about.setIcon(new ImageIcon("./img/Info-32.png"));
 		btn_about.setBounds(814, 624, 192, 40);
 		frm_main.add(btn_about);
 	}

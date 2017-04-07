@@ -1,6 +1,9 @@
 package main;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Reader 
@@ -27,10 +30,26 @@ public class Reader
 			return al;
 		}
 		
+		
+		
+		
 		//Auslesen einer Datei mit übergebenen Pfad
-		public static ArrayList<String> readFile(String path)
+		public static ArrayList<String> readFile(String path) throws IOException
 		{
-			ArrayList<String> dateiInhalt = null;
+			FileReader 			einlesen 	= new FileReader(path);
+			BufferedReader 		buff		= new BufferedReader(einlesen);
+			ArrayList<String> 	dateiInhalt = null;
+		
+			do
+			{
+				dateiInhalt.add(buff.readLine());
+			} while(dateiInhalt.get(dateiInhalt.size()-1)!=null);
+			
+			
+			
+			
+			
+			
 			return dateiInhalt;
 		}
 	

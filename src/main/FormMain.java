@@ -13,16 +13,17 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
 
 public class FormMain extends JFrame {
 
 	private JPanel frm_main;
 	private JTable tbl_main;
+	private final Action action = new SwingAction();
 
 	/**
 	 * Launch the application.
@@ -55,35 +56,6 @@ public class FormMain extends JFrame {
 		frm_main.setLayout(null);
 		
 		tbl_main = new JTable();
-		tbl_main.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		tbl_main.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"wefewffe", null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"dsfsdf", "sdefsdf", "sdfsdf"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		tbl_main.getColumnModel().getColumn(2).setPreferredWidth(155);
 		tbl_main.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tbl_main.setBounds(16, 16, 786, 704);
 		frm_main.add(tbl_main);
@@ -101,11 +73,12 @@ public class FormMain extends JFrame {
 		JButton btn_export = new JButton("Export");
 		btn_export.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				ArrayList<String> test = TestArrayString.getTestArray();
+			public void mouseClicked(MouseEvent arg0) {
+				ArrayList<String> test = new ArrayList<>();
 				SelectFile.saveFile(test);
 			}
 		});
+		btn_export.setAction(action);
 		btn_export.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Share 3-32.png"));
 		btn_export.setBounds(814, 680, 192, 40);
 		frm_main.add(btn_export);
@@ -113,11 +86,20 @@ public class FormMain extends JFrame {
 		JButton btn_about = new JButton("About");
 		btn_about.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				FormAbout form = new FormAbout();
+				form.setVisible(true);
 			}
 		});
 		btn_about.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Info-32.png"));
 		btn_about.setBounds(814, 624, 192, 40);
 		frm_main.add(btn_about);
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }

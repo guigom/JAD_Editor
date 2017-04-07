@@ -13,9 +13,11 @@ public class CustomFileChooser extends JFileChooser {
 	    super();
 	    this.extension = extension;
 	    addChoosableFileFilter(new FileNameExtensionFilter(
-	      String.format("%1$s Images (*.%1$s)", extension), extension));
-	  }
+	      String.format("%1$s-Datei (*.%1$s)", extension), extension));
+	    this.setAcceptAllFileFilterUsed(false);
 
+	  }
+	
 	  @Override public File getSelectedFile() {
 	    File selectedFile = super.getSelectedFile();
 
@@ -34,9 +36,9 @@ public class CustomFileChooser extends JFileChooser {
 	      File selectedFile = getSelectedFile();
 	      if ((selectedFile != null) && selectedFile.exists()) {
 	        int response = JOptionPane.showConfirmDialog(this,
-	          "The file " + selectedFile.getName() + 
-	          " already exists. Do you want to replace the existing file?",
-	          "Ovewrite file", JOptionPane.YES_NO_OPTION,
+	          "Die Datei " + selectedFile.getName() + 
+	          " existiert bereits. Überschreiben?",
+	          "Warnung", JOptionPane.YES_NO_OPTION,
 	          JOptionPane.WARNING_MESSAGE);
 	        if (response != JOptionPane.YES_OPTION)
 	          return;

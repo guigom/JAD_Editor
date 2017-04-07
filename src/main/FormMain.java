@@ -13,11 +13,17 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class FormMain extends JFrame {
 
 	private JPanel frm_main;
 	private JTable tbl_main;
+	private final Action action = new SwingAction();
 
 	/**
 	 * Launch the application.
@@ -65,6 +71,14 @@ public class FormMain extends JFrame {
 		frm_main.add(btn_del);
 		
 		JButton btn_export = new JButton("Export");
+		btn_export.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ArrayList<String> test = new ArrayList<>();
+				SelectFile.saveFile(test);
+			}
+		});
+		btn_export.setAction(action);
 		btn_export.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Share 3-32.png"));
 		btn_export.setBounds(814, 680, 192, 40);
 		frm_main.add(btn_export);
@@ -79,5 +93,13 @@ public class FormMain extends JFrame {
 		btn_about.setIcon(new ImageIcon("C:\\Users\\harry\\workspace\\JAD_Editor\\img\\Info-32.png"));
 		btn_about.setBounds(814, 624, 192, 40);
 		frm_main.add(btn_about);
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }

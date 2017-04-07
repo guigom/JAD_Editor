@@ -13,6 +13,9 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class FormMain extends JFrame {
 
@@ -84,6 +87,13 @@ public class FormMain extends JFrame {
 		frm_main.add(btn_del);
 		
 		JButton btn_export = new JButton("Export");
+		btn_export.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ArrayList<String> test = TestArrayString.getTestArray();
+				SelectFile.saveFile(test);
+			}
+		});
 		btn_export.setIcon(new ImageIcon("./img/Share 3-32.png"));
 		btn_export.setBounds(814, 680, 192, 40);
 		frm_main.add(btn_export);

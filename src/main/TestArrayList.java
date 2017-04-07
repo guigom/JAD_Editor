@@ -3,6 +3,10 @@ package main;
 import java.util.ArrayList;
 
 public class TestArrayList {
+	/**
+	 * 
+	 * @return Gibt eine ArrayList mit User-Objekten zurück
+	 */
 	public static ArrayList<User> getArrayList()
 	{
 		ArrayList<User> array = new ArrayList<User>();

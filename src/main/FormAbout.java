@@ -57,7 +57,7 @@ public class FormAbout extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				ArrayList<String> test = new ArrayList<>();
-				Writer.writeFile("test", test);
+				SelectFile.saveFile(test);
 			}
 		});
 		btn_ok.setBounds(398, 306, 96, 32);

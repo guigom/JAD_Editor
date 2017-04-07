@@ -3,6 +3,10 @@ package main;
 import java.util.ArrayList;
 
 public class TestArrayString {
+	/**
+	 * 
+	 * @return Gibt eine String-ArrayList zurück
+	 */
 	public static ArrayList<String> getTestArray()
 	{
 		ArrayList<String> array = new ArrayList<>();

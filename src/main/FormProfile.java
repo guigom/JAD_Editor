@@ -40,7 +40,7 @@ public class FormProfile extends JFrame {
 	public FormProfile() {
 		setResizable(false);
 		setTitle("Select Profile");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 512, 385);
 		frm_profile = new JPanel();
 		frm_profile.setBorder(new EmptyBorder(5, 5, 5, 5));

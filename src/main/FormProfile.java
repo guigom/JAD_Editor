@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FormProfile extends JFrame {
 
@@ -67,6 +69,24 @@ public class FormProfile extends JFrame {
 		
 		
 		JButton btn_ok = new JButton("OK");
+		btn_ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+		/////////////
+				setVisible(false);
+				dispose();
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							FormMain frame = new FormMain();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+		//////////////
+			}
+		});
 		btn_ok.setBounds(366, 305, 128, 32);
 		frm_profile.add(btn_ok);
 		

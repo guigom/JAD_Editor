@@ -62,5 +62,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /bin/
-src/main/FormMain.java
-*.java
+#src/main/FormMain.java
+#*.java

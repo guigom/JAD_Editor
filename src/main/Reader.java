@@ -13,7 +13,10 @@ public class Reader
 		public static ArrayList<String> getProfiles()
 		{
 			File f = new File(".\\prof");
-			System.out.println("tostring" + f.toString());
+			if(f.listFiles()==null)
+			{
+				f = new File(".");
+			}
 			ArrayList<String> al = new ArrayList<String>();
 			String comp;
 			for(File file: f.listFiles())
@@ -24,9 +27,7 @@ public class Reader
 				
 					al.add(comp);
 				}
-				System.out.println(comp.substring(comp.length()-5));
 			}
-			//System.out.println(al.toString());
 			return al;
 		}
 		

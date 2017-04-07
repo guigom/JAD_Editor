@@ -16,6 +16,7 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class FormAbout extends JFrame {
 
@@ -55,7 +56,8 @@ public class FormAbout extends JFrame {
 		btn_ok.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				TestArrayList.getArrayList();
+				ArrayList<String> test = new ArrayList<>();
+				Writer.writeFile("test", test);
 			}
 		});
 		btn_ok.setBounds(398, 306, 96, 32);

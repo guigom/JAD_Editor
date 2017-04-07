@@ -37,6 +37,8 @@ public class FormMain extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * Bearbeitet 7.04, alle Buttons "rufen etwas auf". 
+	 * 
 	 */
 	public FormMain() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./img/logo.png"));
@@ -54,6 +56,8 @@ public class FormMain extends JFrame {
 		tbl_main.setBounds(16, 16, 786, 704);
 		frm_main.add(tbl_main);
 		
+		// Button add: 
+		// ruft FormAdd.java auf 
 		JButton btn_add = new JButton("Eintrag hinzuf\u00FCgen");
 		btn_add.setIcon(new ImageIcon("./img/Plus-32.png"));
 		btn_add.addActionListener(new ActionListener() {
@@ -65,8 +69,17 @@ public class FormMain extends JFrame {
 		btn_add.setBounds(816, 16, 192, 40);
 		frm_main.add(btn_add);
 		
+		// Button enfernen: 
+		// ruft erstamal (!) FormAdd.java auf.  
+		// 
 		JButton btn_del = new JButton("Eintrag entfernen");
 		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
+		btn_del.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FormAdd form = new FormAdd();
+				form.setVisible(true);
+			}
+		});
 		btn_del.setBounds(816, 72, 192, 40);
 		frm_main.add(btn_del);
 		

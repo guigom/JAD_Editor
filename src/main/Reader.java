@@ -36,19 +36,14 @@ public class Reader
 		//Auslesen einer Datei mit übergebenen Pfad
 		public static ArrayList<String> readFile(String path) throws IOException
 		{
+			//Filereader, Buffer und String-Liste initialisieren
 			FileReader 			einlesen 	= new FileReader(path);
 			BufferedReader 		buff		= new BufferedReader(einlesen);
-			ArrayList<String> 	dateiInhalt = null;
+			ArrayList<String> 	dateiInhalt	= new ArrayList<>();
 		
-			do
-			{
-				dateiInhalt.add(buff.readLine());
-			} while(dateiInhalt.get(dateiInhalt.size()-1)!=null);
-			
-			
-			
-			
-			
+			//Schleife, die Inhalt einliest, bis ein null vorkommt
+			for(String zeile="";(zeile=buff.readLine())!=null;)
+				dateiInhalt.add(zeile);			
 			
 			return dateiInhalt;
 		}

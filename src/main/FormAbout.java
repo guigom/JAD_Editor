@@ -56,8 +56,6 @@ public class FormAbout extends JFrame {
 		btn_ok.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ArrayList<String> test = new ArrayList<>();
-				SelectFile.saveFile(test);
 			}
 		});
 		btn_ok.setBounds(398, 306, 96, 32);

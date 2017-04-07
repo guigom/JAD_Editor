@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class FormMain extends JFrame {
 
@@ -54,10 +56,6 @@ public class FormMain extends JFrame {
 		setContentPane(frm_main);
 		frm_main.setLayout(null);
 		
-		tbl_main = new JTable();
-		tbl_main.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		tbl_main.setBounds(16, 16, 786, 704);
-		frm_main.add(tbl_main);
 		
 		// Button add: 
 		// ruft FormAdd.java auf 
@@ -109,5 +107,12 @@ public class FormMain extends JFrame {
 		btn_about.setIcon(new ImageIcon("./img/Info-32.png"));
 		btn_about.setBounds(814, 624, 192, 40);
 		frm_main.add(btn_about);
+		
+		JScrollPane scp_main = new JScrollPane();
+		scp_main.setBounds(12, 16, 780, 704);
+		frm_main.add(scp_main);
+		
+		tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
+		scp_main.setViewportView(tbl_main);
 	}
 }

@@ -3,6 +3,11 @@ package main;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Johannes Jakuscheit
+ *
+ */
 public class Profil
 {
 	//Deklarierung der Variablen

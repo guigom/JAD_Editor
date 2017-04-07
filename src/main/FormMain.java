@@ -88,6 +88,7 @@ public class FormMain extends JFrame {
 		btn_export.setBounds(814, 680, 192, 40);
 		frm_main.add(btn_export);
 		
+		// About - Fenster
 		JButton btn_about = new JButton("About");
 		btn_about.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

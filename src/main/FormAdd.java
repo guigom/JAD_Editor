@@ -37,7 +37,7 @@ public class FormAdd extends JFrame {
 	public FormAdd() {
 		setResizable(false);
 		setTitle("Eintrag hinzuf\u00FCgen");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 512, 156);
 		frm_add = new JPanel();
 		frm_add.setBorder(new EmptyBorder(5, 5, 5, 5));

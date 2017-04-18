@@ -12,6 +12,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -60,12 +62,6 @@ public class FormAdd extends JFrame {
 		
 		JButton btn_add = new JButton("OK");
 		btn_add.setBounds(286, 432, 192, 32);
-		btn_add.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-			}
-		});
 		frm_add.add(btn_add);
 		
 		
@@ -91,7 +87,19 @@ public class FormAdd extends JFrame {
 		scp_add.setBounds(12, 13, 466, 358);
 		frm_add.add(scp_add);
 		
-		
+		btn_add.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ArrayList<String> aL = new ArrayList<>();
+				for (int i = 0;i<addText.length;i++)
+				{
+					aL.add(addText[i].getText());
+				}
+				User user = new User(aL,"Gruppe","OU");
+				System.out.println(user.getUserGenInfo().toString());
+				p.addALUser(user);
+			}
+		});
 		
 		
 	}

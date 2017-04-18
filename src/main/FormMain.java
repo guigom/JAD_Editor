@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -63,7 +64,13 @@ public class FormMain extends JFrame {
 		btn_add.setIcon(new ImageIcon("./img/Plus-32.png"));
 		btn_add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FormAdd form = new FormAdd();
+				FormAdd form = null;
+				try {
+					form = new FormAdd(TestProfil.getTestProfil());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				form.setVisible(true);
 			}
 		});
@@ -77,7 +84,13 @@ public class FormMain extends JFrame {
 		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
 		btn_del.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FormAdd form = new FormAdd();
+				FormAdd form = null;
+				try {
+					form = new FormAdd(TestProfil.getTestProfil());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				form.setVisible(true);
 			}
 		});

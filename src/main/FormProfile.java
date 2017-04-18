@@ -1,5 +1,6 @@
 package main;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
@@ -64,6 +65,12 @@ public class FormProfile extends JFrame {
 			
 		}
 		JComboBox cbo_profiles = new JComboBox(path_profiles_manipulate.toArray());
+		cbo_profiles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 JComboBox selectedChoice = (JComboBox) e.getSource();
+				 System.out.println(selectedChoice.getSelectedItem().toString());
+			}
+		});
 		cbo_profiles.setBounds(12, 16, 482, 32);
 		frm_profile.add(cbo_profiles);
 		

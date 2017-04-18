@@ -6,6 +6,10 @@ Surname
 SamAccountName
 Description
 Enabled
+Name
+Description
+Enabled
+Name
 _ou
 Abteilung 1,"OU=Abteilung 1,OU=Firma,DC=bib,DC=loc"
 Abteilung 2,"OU=Abteilung 2,OU=Firma,DC=bib,DC=loc"

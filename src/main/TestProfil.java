@@ -35,5 +35,11 @@ public class TestProfil {
 	
 		
 	}
+	
+	public static Profil getTestProfil() throws IOException
+	{
+		Profil P1 = new Profil(".\\prof\\Profil1.prof");
+		return P1;
+	}
 
 }

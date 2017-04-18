@@ -1,15 +1,30 @@
 _desc
 Profil für die Domäne Ost
 _attr
-Name
-Surname
-SamAccountName
-Description
-Enabled
-Name
-Description
-Enabled
-Name
+Nachname,Name
+Vorname,Surname
+Login Name,SamAccountName
+Beschreibung,Description
+Nachname,Name
+Vorname,Surname
+Login Name,SamAccountName
+Beschreibung,Description
+Nachname,Name
+Vorname,Surname
+Login Name,SamAccountName
+Beschreibung,Description
+Nachname,Name
+Vorname,Surname
+Login Name,SamAccountName
+Beschreibung,Description
+Nachname,Name
+Vorname,Surname
+Login Name,SamAccountName
+Beschreibung,Description
+Nachname,Name
+Vorname,Surname
+Login Name,SamAccountName
+Beschreibung,Description
 _ou
 Abteilung 1,"OU=Abteilung 1,OU=Firma,DC=bib,DC=loc"
 Abteilung 2,"OU=Abteilung 2,OU=Firma,DC=bib,DC=loc"

@@ -1,7 +1,9 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -66,33 +68,31 @@ public class FormAdd extends JFrame {
 		});
 		frm_add.add(btn_add);
 		
-		JScrollPane scp_add = new JScrollPane();
-		scp_add.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scp_add.setBounds(12, 13, 466, 358);
-		frm_add.add(scp_add);
 		
-		JPanel panel = new JPanel();
-		scp_add.setViewportView(panel);
-		panel.setLayout(null);
+		JPanel pnl_add = new JPanel();
+		pnl_add.setLayout(new GridLayout(0,2,10,10));
 
-		panel.setSize(300, (p.getProfGenInfo().size()*48)+32);
-		
 		JLabel[] addLabel = new JLabel[p.getProfGenInfo().size()];
 		JTextField[] addText = new JTextField[p.getProfGenInfo().size()];
 		
 		for (int i =0;i<p.getProfGenInfo().size();i++)
 		{
-			
-			addLabel[i] = new JLabel("New label");
-			addLabel[i].setBounds(16, 16+(i*48), 128, 32);
-			addLabel[i].setText("Test " + i);
-			panel.add(addLabel[i]);
+			String zwischen = p.getProfGenInfo().get(i);
+			addLabel[i] = new JLabel(zwischen.substring(0, zwischen.indexOf(',')));
+			pnl_add.add(addLabel[i]);
 			
 			addText[i] = new JTextField();
-			addText[i].setBounds(160, 16+(i*48), 288, 32);
-			panel.add(addText[i]);
+			pnl_add.add(addText[i]);
 			addText[i].setColumns(1);
 		}
+		
+		JScrollPane scp_add = new JScrollPane(pnl_add);
+		scp_add.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scp_add.setBounds(12, 13, 466, 358);
+		frm_add.add(scp_add);
+		
+		
+		
 		
 	}
 }

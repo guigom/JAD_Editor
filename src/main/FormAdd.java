@@ -9,9 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
@@ -19,13 +24,17 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-public class FormAdd extends JFrame {
+public class FormAdd extends JDialog {
 
+	private int selectedCbo;
+	
 	private JPanel frm_add;
-
+	User user_cache;
 	/**
 	 * Launch the application.
 	 */
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,11 +61,35 @@ public class FormAdd extends JFrame {
 		setContentPane(frm_add);
 		frm_add.setLayout(null);
 		
-		JComboBox cbo_ou = new JComboBox();
+		JComboBox cbo_ou = new JComboBox(p.getProfOU().toArray());
 		cbo_ou.setBounds(14, 384, 256, 32);
+		//cbo_ou.addItem(item);
+		cbo_ou.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 JComboBox selectedChoice = (JComboBox) e.getSource();
+				 selectedCbo = selectedChoice.getSelectedIndex();
+				 //test.setText(path_profiles.get(selectedChoice.getSelectedIndex()));
+			}
+		});
+		System.out.println(p.getProfOU().toString());
 		frm_add.add(cbo_ou);
 		
 		JButton btn_grp = new JButton("Gruppen...");
+		btn_grp.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							FormGroups frame = new FormGroups(TestProfil.getTestProfil(), user_cache);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		btn_grp.setBounds(286, 384, 192, 32);
 		frm_add.add(btn_grp);
 		
@@ -95,8 +128,8 @@ public class FormAdd extends JFrame {
 				{
 					aL.add(addText[i].getText());
 				}
-				User user = new User(aL,"Gruppe","OU");
-				System.out.println(user.getUserGenInfo().toString());
+				User user = new User(aL,"Gruppe",Converter.getStringBack(p.getProfOU().get(selectedCbo)));
+				System.out.println(user.getUserGenInfo().toString() + "\n" + user.getUserOU() + "\n" + user.getUserGroup());
 				p.addALUser(user);
 			}
 		});

@@ -32,7 +32,7 @@ public class FormMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FormMain frame = new FormMain();
+					FormMain frame = new FormMain(TestProfil.getTestProfil());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class FormMain extends JFrame {
 	 * Bearbeitet 7.04, alle Buttons "rufen etwas auf". 
 	 * 
 	 */
-	public FormMain() {
+	public FormMain(Profil profile_cache) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./img/logo.png"));
 		setTitle("JAD Editor");
 		setResizable(false);

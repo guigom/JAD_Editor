@@ -1,0 +1,26 @@
+<Project>
+  <Name>jAD-Editor</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Unbenannt</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>MyReadWrite</Name>
+        <Access>Public</Access>
+        <Location left="82" top="116" />
+        <Size width="259" height="209" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static String[][] getProfiles()</Member>
+        <Member type="Method">public static ArrayListy&lt;String&gt; readFile(String path)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Unbenannt</Name>
+    <Language>Java</Language>
+    <Entities />
+    <Relationships />
+  </ProjectItem>
+</Project>

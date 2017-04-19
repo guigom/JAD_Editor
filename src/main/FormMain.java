@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
@@ -49,7 +51,7 @@ public class FormMain extends JFrame {
 	public FormMain(Profil profile_cache) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./img/logo.png"));
 		setTitle("JAD Editor");
-		setResizable(false);
+		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1023, 768);
 		frm_main = new JPanel();
@@ -127,5 +129,16 @@ public class FormMain extends JFrame {
 		
 		tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
 		scp_main.setViewportView(tbl_main);
+		
+		// Kontextmenü
+		JPopupMenu context	= new JPopupMenu("Context");
+		JMenuItem		cCopy		= new JMenuItem("Copy");
+		context.add(cCopy);
+		cCopy.addActionListener( e-> {
+			System.out.printf("öffne FormAdd %s%n", e.getActionCommand() );
+			// TODO: wen rufe ich hier auf?
+		});
+		
+		setComponentPopupMenu(context);
 	}
 }

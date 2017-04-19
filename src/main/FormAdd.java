@@ -25,11 +25,16 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 public class FormAdd extends JDialog {
+	
+	private String group_cache;
+	
+	private User user_cache;
+	//Getter
+	public User getUser() {return user_cache;}
 
 	private int selectedCbo;
 	
 	private JPanel frm_add;
-	User user_cache;
 	/**
 	 * Launch the application.
 	 */
@@ -52,6 +57,9 @@ public class FormAdd extends JDialog {
 	 * Create the frame.
 	 */
 	public FormAdd(Profil p) {
+		//Modal machen (In VorderGrund halten)
+		this.setModal(true);
+		
 		setResizable(false);
 		setTitle("Eintrag hinzuf\u00FCgen");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -74,6 +82,9 @@ public class FormAdd extends JDialog {
 		System.out.println(p.getProfOU().toString());
 		frm_add.add(cbo_ou);
 		
+		//String variable
+		this.group_cache = "";
+		
 		JButton btn_grp = new JButton("Gruppen...");
 		btn_grp.addMouseListener(new MouseAdapter() {
 			@Override
@@ -81,8 +92,11 @@ public class FormAdd extends JDialog {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							FormGroups frame = new FormGroups(TestProfil.getTestProfil(), user_cache);
+							FormGroups frame = new FormGroups(p);
 							frame.setVisible(true);
+							while(frame.isVisible());
+							group_cache = frame.getGroup();
+							frame.dispose();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -128,9 +142,10 @@ public class FormAdd extends JDialog {
 				{
 					aL.add(addText[i].getText());
 				}
-				User user = new User(aL,"Gruppe",Converter.getStringBack(p.getProfOU().get(selectedCbo)));
-				System.out.println(user.getUserGenInfo().toString() + "\n" + user.getUserOU() + "\n" + user.getUserGroup());
-				p.addALUser(user);
+				user_cache = new User(aL,group_cache,Converter.getStringBack(p.getProfOU().get(selectedCbo)));
+				setVisible(false);
+			//	System.out.println(user.getUserGenInfo().toString() + "\n" + user.getUserOU() + "\n" + user.getUserGroup());
+			//	p.addALUser(user);
 			}
 		});
 		

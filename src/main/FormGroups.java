@@ -36,8 +36,22 @@ public class FormGroups extends JDialog {
 
 	/**
 	 * Create the frame.
+	 * @return 
+	 * @return 
 	 */
-	public FormGroups(Profil p, User u) {
+	//Variable
+	private String groupChoose;
+	
+	//Getter
+	public String	getGroup(){return this.groupChoose;}
+	
+	public FormGroups(Profil p) {
+		//Modal machen (In VorderGrund halten)
+		this.setModal(true);
+		this.groupChoose = "";
+		
+		
+		
 		setTitle("Gruppen verwalten");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 386, 512);
@@ -59,8 +73,8 @@ public class FormGroups extends JDialog {
 			public void mouseClicked(MouseEvent arg0) {
 				String selected = (String) lst_groups.getSelectedValue();
 				System.out.println(Converter.getStringBack(selected));
-				u.setUserGroup("Hallo");
-
+				groupChoose = Converter.getStringBack(selected);
+				setVisible(false);
 			}
 		});
 		btn_ok.setBounds(260, 420, 96, 32);

@@ -93,11 +93,8 @@ public class FormMain extends JFrame {
 		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
 		btn_del.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FormAdd form = null;
-				
-				form = new FormAdd(activeProfile);
-				
-				form.setVisible(true);
+				int rowIndex = tbl_main.getSelectedRow();
+				System.out.println(rowIndex);
 			}
 		});
 		btn_del.setBounds(816, 72, 192, 40);
@@ -107,8 +104,7 @@ public class FormMain extends JFrame {
 		btn_export.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ArrayList<String> test = TestArrayString.getTestArray();
-				SelectFile.saveFile(test);
+				SelectFile.saveFile(Converter.formatUser(activeProfile));
 			}
 		});
 		btn_export.setIcon(new ImageIcon("./img/Share 3-32.png"));

@@ -60,7 +60,7 @@ public class Converter
 				zeile+=("\""+attr+"\",");
 			}
 			//Guppe und OU anfügen
-			zeile+=("\""+nutzer.getUserGroup()+"\",\""+nutzer.getUserOU()+"\"");
+			zeile+=(nutzer.getUserGroup()+","+nutzer.getUserOU());
 			//Zeile schreiben
 			dateiInhalt.add(zeile);
 		}

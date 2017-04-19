@@ -4,6 +4,25 @@ import java.util.ArrayList;
 
 public class Converter 
 {
+	//Ausgeben eines Strings vor dem Komma
+	public static String getStringFront(String returnString)
+	{
+		//Einlesen der Kommastelle
+		int indexNr = returnString.indexOf(',');
+		//Schneiden in Abhängigkeit vom Komma
+		if(indexNr>-1)
+			returnString=returnString.substring(0, indexNr);
+		//Rückgabe des Strings		
+		return returnString;
+	}
+	
+	//Ausgeben eines String nach dem Komma
+	public static String getStringBack(String returnString)
+	{
+		return returnString.substring(returnString.indexOf(',')+1);
+	}
+	
+	
 	
 	//Formatieren von Profil- und Nutzerdaten zu einer ArrayList für CSV
 	public static ArrayList<String> formatUser(Profil activeProfile)
@@ -20,7 +39,7 @@ public class Converter
 		for(String attr: activeProfile.getProfGenInfo())
 		{
 			//Anzeigename abschneiden
-			attr=attr.substring(attr.indexOf(',')+1);
+			attr=getStringBack(attr);
 			//Anführungszeichen+Komma hinzufügen
 			zeile+=("\""+attr+"\""+",");
 		}

@@ -56,6 +56,7 @@ public class FormAbout extends JFrame {
 		btn_ok.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				dispose();
 			}
 		});
 		btn_ok.setBounds(398, 306, 96, 32);

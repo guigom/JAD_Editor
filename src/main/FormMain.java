@@ -105,6 +105,8 @@ public class FormMain extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int rowIndex = tbl_main.getSelectedRow();
 				System.out.println(rowIndex);
+				activeProfile.removeALUser(activeProfile.getALUSER().get(rowIndex));
+				alter_table();
 			}
 		});
 		btn_del.setBounds(816, 72, 192, 40);

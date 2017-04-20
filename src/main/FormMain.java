@@ -141,7 +141,7 @@ public class FormMain extends JFrame {
 		frm_main.add(scp_main);
 		
 		//Zusammensetzen des Headers für die JTable
-		ArrayList<String> col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
+		ArrayList<String> col_names = new ArrayList<String>(Converter.getStringFront(activeProfile.getProfGenInfo()));
 		col_names.add("Gruppe");	//fixe Werte
 		col_names.add("OU");		
 		
@@ -166,7 +166,7 @@ public class FormMain extends JFrame {
 		if(activeProfile.getALUSER().size()==0)
 		{
 		//Zusammensetzen des Headers für die JTable
-				col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
+				col_names = new ArrayList<String>(Converter.getStringFront(activeProfile.getProfGenInfo()));
 				col_names.add("Gruppe");	//fixe Werte
 				col_names.add("OU");		
 				

@@ -85,8 +85,6 @@ public class FormAdd extends JDialog {
 		System.out.println(p.getProfOU().toString());
 		frm_add.add(cbo_ou);
 		
-		//String variable
-		this.group_cache = "";
 		
 		JButton btn_grp = new JButton("Gruppen...");
 		btn_grp.addMouseListener(new MouseAdapter() {

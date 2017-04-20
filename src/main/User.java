@@ -14,12 +14,25 @@ public class User
 	public String				getUserGroup()		{return this.userGroup;}
 	public String				getUserOU()			{return this.userOU;}
 	
-	//Konstruktor
+	//Setter
+	public void					setUserGroup(String userGroup)		{this.userGroup=userGroup;}
+	public void					setUserOU(String userOU)			{this.userOU=userOU;}
+	
+	
+	//Konstruktor mit allen Parametern
 	User(ArrayList<String> aLUser, String group, String oUnit)
 	{
 		this.userGenInfo 	= aLUser;
 		this.userGroup		= group;
 		this.userOU			= oUnit;
+	}
+	
+	//Überladener Konstruktor nur mit GenInfo
+	User(ArrayList<String> aLUser)
+	{
+		this.userGenInfo 	= aLUser;
+		this.userGroup		= "";
+		this.userOU			= "";
 	}
 	
 }

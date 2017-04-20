@@ -1,0 +1,54 @@
+package main;
+
+//Guido TODO
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class TestProfil {
+
+	public static void main(String[] args) 
+	{
+		try
+		{
+		Profil P1 = new Profil(".\\prof\\Profil1.prof");
+		
+		System.out.println("Attribute________________");
+		for(String x: P1.getProfGenInfo())
+			System.out.println(x);
+		
+		System.out.println("OUs______________________");
+		for(String x: P1.getProfOU())
+			System.out.println(x);
+		
+		System.out.println("Gruppe___________________");
+		for(String x: P1.getProfGroups())
+			System.out.println(x);
+		
+		
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+	
+		
+	}
+	
+	public static Profil getTestProfil() throws IOException
+	{
+		Profil P1 = new Profil(".\\prof\\Profil1.prof");
+		for (int i = 0; i<10;i++)
+		{
+			ArrayList<String> aL = new ArrayList<String>();
+			aL.add("Vorname" + i);
+			aL.add("Nachname" + i);
+			aL.add("Login" + i);
+			User user = new User(aL, "Gruppe" + i, "OU" + i);
+			P1.addALUser(user);
+		}
+		return P1;
+	}
+
+}

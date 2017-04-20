@@ -1,5 +1,6 @@
 package main;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
@@ -13,9 +14,16 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
+
 
 public class FormProfile extends JFrame {
 
+	ArrayList<String> profile_alldata;
+	JTextArea txt_desc = new JTextArea();
+	Profil profile_cache;
 	private JPanel frm_profile;
 
 	/**
@@ -36,11 +44,12 @@ public class FormProfile extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
 	 */
-	public FormProfile() {
+	public FormProfile() throws IOException {
 		setResizable(false);
 		setTitle("Select Profile");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 512, 385);
 		frm_profile = new JPanel();
 		frm_profile.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,7 +58,8 @@ public class FormProfile extends JFrame {
 		
 		//Profile holen, in Zwischenspeicher manipulieren und mit Combobox aufrufen
 		ArrayList<String> path_profiles = Reader.getProfiles();
-		ArrayList<String> path_profiles_manipulate = path_profiles;
+		ArrayList<String> path_profiles_manipulate = new ArrayList<>();
+		path_profiles_manipulate.addAll(0, path_profiles);
 		for(int i=0; i<path_profiles_manipulate.size();i++ )
 		{
 			
@@ -62,18 +72,63 @@ public class FormProfile extends JFrame {
 			
 		}
 		JComboBox cbo_profiles = new JComboBox(path_profiles_manipulate.toArray());
+		cbo_profiles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 JComboBox selectedChoice = (JComboBox) e.getSource();
+				 System.out.println(selectedChoice.getSelectedIndex());
+				 System.out.println(path_profiles.get(selectedChoice.getSelectedIndex()));
+				 //test.setText(path_profiles.get(selectedChoice.getSelectedIndex()));
+				 try {
+					profile_alldata = Reader.readFile(path_profiles.get(cbo_profiles.getSelectedIndex()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 txt_desc.setText(profile_alldata.get(1));
+			}
+		});
 		cbo_profiles.setBounds(12, 16, 482, 32);
+		//test System.out.println(cbo_profiles.getSelectedIndex());
+		//     System.out.println(path_profiles.get(cbo_profiles.getSelectedIndex()));
 		frm_profile.add(cbo_profiles);
 		
 		
 		JButton btn_ok = new JButton("OK");
+		btn_ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+		/////////////
+				setVisible(false);
+				dispose();
+				try {
+					profile_cache = new Profil(path_profiles.get(cbo_profiles.getSelectedIndex()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							FormMain frame = new FormMain(profile_cache);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+		//////////////
+			}
+		});
 		btn_ok.setBounds(366, 305, 128, 32);
 		frm_profile.add(btn_ok);
 		
-		JTextArea txt_desc = new JTextArea();
-		txt_desc.setText("Description");
+		//gelesene Datei (1. Durchlauf)
+		profile_alldata = Reader.readFile(path_profiles.get(cbo_profiles.getSelectedIndex()));
+		
+		//JTextArea txt_desc = new JTextArea();
+		txt_desc.setText(profile_alldata.get(1));
 		txt_desc.setBackground(UIManager.getColor("Label.background"));
 		txt_desc.setBounds(12, 61, 342, 276);
 		frm_profile.add(txt_desc);
+		
 	}
 }

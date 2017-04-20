@@ -19,7 +19,7 @@ public class Writer
 	{
 		Path file = Paths.get(path);
 		try {
-			Files.write(file, TestArrayString.getTestArray(), Charset.forName("UTF-8"));
+			Files.write(file, c, Charset.forName("UTF-8"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

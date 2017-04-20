@@ -9,6 +9,7 @@ public class TestArrayString {
 	 */
 	public static ArrayList<String> getTestArray()
 	{
+		//test
 		ArrayList<String> array = new ArrayList<>();
 		for (int i = 1; i<=100;i++)
 		{

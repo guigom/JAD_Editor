@@ -17,6 +17,8 @@ import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FormAbout extends JFrame {
 
@@ -45,7 +47,7 @@ public class FormAbout extends JFrame {
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setTitle("About JAD Editor");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 512, 386);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -53,9 +55,15 @@ public class FormAbout extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btn_ok = new JButton("OK");
+		btn_ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btn_ok.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				dispose();
 			}
 		});
 		btn_ok.setBounds(398, 306, 96, 32);

@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -25,6 +26,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import main.PopupMenu.MyMouseAdapter;
 
 public class FormMain extends JFrame {
 
@@ -137,26 +140,50 @@ public class FormMain extends JFrame {
 				TestArrayTableHeader.getTestStringHeaderArray());
 		scp_main.setViewportView(tbl_main);
 		
-		// Kontextmenü
-		// TODO: 
-		// Das ganze Menu kontextabhängig auslagern in
-		// eine eigene Klasse. 
+/** Kontextmenü
+// TODO:  Das ganze Menu kontextabhängig auslagern in
+// eine eigene Klasse. 
+
+// was kommt rein? 
+// Copy 
+// Paste */
+
+
+// erzeuge Kontextmenü 		
 		JPopupMenu context	= new JPopupMenu("Context");
-//		add
 		
-		JMenuItem		cCopy		= new JMenuItem("Copy");
-		context.add(cCopy);
+// erzeuge Menüeintrag
+		// hat keinen verbundenen Listener
+		context.add( new JMenuItem("Erster Eintrag ") );
+		context.addSeparator();
+// erzeuge Menüeintrag
+		JMenuItem	cCopy	= new JMenuItem("Copy");
+		//tbl_main.add(cCopy);
+		
 		cCopy.addActionListener( e-> {
-			System.out.printf("öffne FormAdd %s%n", e.getActionCommand() );
+			System.out.printf("Ausgabe cCopy %s%n", e.getActionCommand() );
 			// TODO: wen rufe ich hier auf?
-			tbl_main.getSelectedColumns(); 
+			//tbl_main.getSelectedColumns(); 
 		});
-		
+// erzeuge weitere Menüeinträge 
+	    for ( String s : ("AEG Vampyrino SX,Electrolux Clario Z 1941," +
+                "Quelle Privileg Piccolino,Siemens Super T120VS12A00," +
+                "Hoover Micro Power Electronic,Rowenta dymbo").split(",") )
+		{
+		 context.add( new AbstractAction(s) {
+		   @Override public void actionPerformed( ActionEvent e ) {
+		     tbl_main.addRowSelectionInterval(1, 3) ;
+		     System.out.println("FormMain.FormMain(...).new AbstractAction() {...}.actionPerformed()");
+					//.append( e.getActionCommand() + "\n" );
+		   }
+		 } );
+		}
 		// füge das Kontextmenü der Tabelle hinzu.
-		tbl_main.add(context);
+//		tbl_main.add(context);
+//		scp_main.add(context);
 		
-		// das MouseEvent informiert den Controller, das 
-		// es gedrückt wurde
+		// das MouseEvent informiert den Controller, dass 
+		// es gedrückt wurde: isPopupTrigger()
 		// 
 		class MyMouseAdapter extends MouseAdapter {
 			/**
@@ -181,6 +208,8 @@ public class FormMain extends JFrame {
 		} // MouseAdapter
 		MyMouseAdapter ma = new MyMouseAdapter(); 
 		tbl_main.addMouseListener(ma);
+		scp_main.addMouseListener(ma);
 //		setComponentPopupMenu(context);
+
 	} // FormMain()
 }// FormMain

@@ -38,7 +38,7 @@ public class FormMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FormMain frame = new FormMain();
+					FormMain frame = new FormMain(TestProfil.getTestProfil());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,12 +47,22 @@ public class FormMain extends JFrame {
 		});
 	}
 
+	//profil
+	private Profil activeProfile;
+	
+	
+	
+	
 	/**
 	 * Create the frame.
 	 * Bearbeitet 7.04, alle Buttons "rufen etwas auf". 
 	 * 
 	 */
-	public FormMain() {
+	public FormMain(Profil selectedProfile) {
+		//profil übernehmen
+		this.activeProfile=selectedProfile;
+		
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./img/logo.png"));
 		setTitle("JAD Editor");
 		setResizable(true);
@@ -70,14 +80,13 @@ public class FormMain extends JFrame {
 		btn_add.setIcon(new ImageIcon("./img/Plus-32.png"));
 		btn_add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FormAdd form = null;
-				try {
-					form = new FormAdd(TestProfil.getTestProfil());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				FormAdd form = new FormAdd(activeProfile);
+				
 				form.setVisible(true);
+				while(form.isVisible());
+				activeProfile.addALUser(form.getUser());
+				form.dispose();
+				System.out.println(activeProfile.getALUSER().get(0).getUserGenInfo().toString());
 			}
 		});
 		btn_add.setBounds(816, 16, 192, 40);
@@ -90,14 +99,8 @@ public class FormMain extends JFrame {
 		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
 		btn_del.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FormAdd form = null;
-				try {
-					form = new FormAdd(TestProfil.getTestProfil());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				form.setVisible(true);
+				int rowIndex = tbl_main.getSelectedRow();
+				System.out.println(rowIndex);
 			}
 		});
 		btn_del.setBounds(816, 72, 192, 40);
@@ -107,8 +110,7 @@ public class FormMain extends JFrame {
 		btn_export.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ArrayList<String> test = TestArrayString.getTestArray();
-				SelectFile.saveFile(test);
+				SelectFile.saveFile(Converter.formatUser(activeProfile));
 			}
 		});
 		btn_export.setIcon(new ImageIcon("./img/Share 3-32.png"));

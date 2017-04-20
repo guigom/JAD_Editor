@@ -39,6 +39,15 @@ public class TestProfil {
 	public static Profil getTestProfil() throws IOException
 	{
 		Profil P1 = new Profil(".\\prof\\Profil1.prof");
+		for (int i = 0; i<10;i++)
+		{
+			ArrayList<String> aL = new ArrayList<String>();
+			aL.add("Vorname" + i);
+			aL.add("Nachname" + i);
+			aL.add("Login" + i);
+			User user = new User(aL, "Gruppe" + i, "OU" + i);
+			P1.addALUser(user);
+		}
 		return P1;
 	}
 

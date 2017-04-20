@@ -60,6 +60,8 @@ public class FormAdd extends JDialog {
 		//Modal machen (In VorderGrund halten)
 		this.setModal(true);
 		
+		this.group_cache = Converter.getStringBack(p.getProfGroups().get(0));
+		
 		setResizable(false);
 		setTitle("Eintrag hinzuf\u00FCgen");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

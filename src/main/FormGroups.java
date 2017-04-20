@@ -48,7 +48,7 @@ public class FormGroups extends JDialog {
 	public FormGroups(Profil p) {
 		//Modal machen (In VorderGrund halten)
 		this.setModal(true);
-		this.groupChoose = "";
+		this.groupChoose = Converter.getStringBack(p.getProfGroups().get(0));
 		
 		
 		

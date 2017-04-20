@@ -159,22 +159,41 @@ public class FormMain extends JFrame {
 	
 	public void alter_table()
 	{
-		System.out.println("testtesttest" + activeProfile.getALUSER().size());
-		//activeProfile.getALUSER().size();
 		ArrayList<String> row_cache;
-		Object [] [] row_data = new Object[activeProfile.getALUSER().size()][activeProfile.getProfGenInfo().size()+2];
-		for(int i =0; i<activeProfile.getALUSER().size(); i++)
-		{
-			row_cache = new ArrayList<String>(activeProfile.getALUSER().get(i).getUserGenInfo());
-			row_cache.add(activeProfile.getALUSER().get(i).getUserGroup());
-			row_cache.add(activeProfile.getALUSER().get(i).getUserOU());
-			row_data [i]= row_cache.toArray(); 
-		}
-		System.out.println(row_data[0][0]);
-		ArrayList<String> col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
-		col_names.add("Gruppe");	//fixe Werte
-		col_names.add("OU");		
+		Object [] [] row_data;
+		ArrayList<String> col_names;
 		
+		if(activeProfile.getALUSER().size()==0)
+		{
+		//Zusammensetzen des Headers für die JTable
+				col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
+				col_names.add("Gruppe");	//fixe Werte
+				col_names.add("OU");		
+				
+				//Leeres 2 Dimensionales Array zur 1. Darstellung
+				row_data = new Object[1][activeProfile.getProfGenInfo().size()+2];
+				
+				
+				//JTable erstellen
+				tbl_main = new JTable(row_data, col_names.toArray());
+		
+		}		//System.out.println("testtesttest" + activeProfile.getALUSER().size());
+		else
+		{	//activeProfile.getALUSER().size();
+			
+			row_data = new Object[activeProfile.getALUSER().size()][activeProfile.getProfGenInfo().size()+2];
+			for(int i =0; i<activeProfile.getALUSER().size(); i++)
+			{
+				row_cache = new ArrayList<String>(activeProfile.getALUSER().get(i).getUserGenInfo());
+				row_cache.add(activeProfile.getALUSER().get(i).getUserGroup());
+				row_cache.add(activeProfile.getALUSER().get(i).getUserOU());
+				row_data [i]= row_cache.toArray(); 
+			}
+			System.out.println(row_data[0][0]);
+			col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
+			col_names.add("Gruppe");	//fixe Werte
+			col_names.add("OU");		
+		}	
 		tbl_main = new JTable(row_data, col_names.toArray());
 		scp_main.setViewportView(tbl_main);
 		System.out.println("Tabelleninhalt: " + tbl_main.getModel().getValueAt(0, 0));

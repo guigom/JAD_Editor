@@ -80,7 +80,7 @@ public class FormMain extends JFrame {
 				
 				form.setVisible(true);
 				while(form.isVisible());
-				activeProfile.addALUser(form.getUser());
+				if(form.getUser()!=null)activeProfile.addALUser(form.getUser());
 				//ArrayList<String> col_cache = new ArrayList<String>(form.getUser().getUserGenInfo());
 				//col_cache.add(form.getUser().getUserOU());
 				//col_cache.add(form.getUser().getUserGroup());
@@ -88,9 +88,9 @@ public class FormMain extends JFrame {
 				//tbl_main.add(col_cache.toArray());
 				alter_table();
 				form.dispose();
-				System.out.println(activeProfile.getALUSER().get(0).getUserGenInfo().toString());
-				System.out.print(activeProfile.getALUSER().get(0).getUserGroup());
-				System.out.print(activeProfile.getALUSER().get(0).getUserOU());
+				//System.out.println(activeProfile.getALUSER().get(0).getUserGenInfo().toString());
+				//System.out.print(activeProfile.getALUSER().get(0).getUserGroup());
+				//System.out.print(activeProfile.getALUSER().get(0).getUserOU());
 			}
 		});
 		btn_add.setBounds(816, 16, 192, 40);

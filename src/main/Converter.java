@@ -15,14 +15,34 @@ public class Converter
 		//Rückgabe des Strings		
 		return returnString;
 	}
+	//Vor dem Komma - ArrayList
+	public static ArrayList<String> getStringFront(ArrayList<String> stringList)
+	{
+		ArrayList<String> returnList = new ArrayList<>();
+		for(String zeile: stringList)
+		{
+			returnList.add(getStringFront(zeile));
+		}
+		return returnList;
+	}
+	
+	
 	
 	//Ausgeben eines String nach dem Komma
 	public static String getStringBack(String returnString)
 	{
 		return returnString.substring(returnString.indexOf(',')+1);
 	}
-	
-	
+	//Nach dem Komma - ArrayList
+	public static ArrayList<String> getStringBack(ArrayList<String> stringList)
+	{
+		ArrayList<String> returnList = new ArrayList<>();
+		for(String zeile: stringList)
+		{
+			returnList.add(getStringBack(zeile));
+		}
+		return returnList;
+	}
 	
 	//Formatieren von Profil- und Nutzerdaten zu einer ArrayList für CSV
 	public static ArrayList<String> formatUser(Profil activeProfile)

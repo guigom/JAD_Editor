@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import main.PopupMenu.MyMouseAdapter;
 
@@ -41,7 +42,7 @@ public class FormMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FormMain frame = new FormMain(TestProfil.getTestProfil());
+					FormMain frame = new FormMain(new Profil(".\\prof\\Profil2.prof"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -136,8 +137,24 @@ public class FormMain extends JFrame {
 		scp_main.setBounds(12, 16, 780, 704);
 		frm_main.add(scp_main);
 		
+<<<<<<< HEAD
 		tbl_main = new JTable(TestTableContent.getTestStringArray(),
 				TestArrayTableHeader.getTestStringHeaderArray());
+=======
+		//Zusammensetzen des Headers für die JTable
+		ArrayList<String> col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
+		col_names.add("Gruppe");	//fixe Werte
+		col_names.add("OU");		
+		
+		//Leeres 2 Dimensionales Array zur 1. Darstellung
+		Object [] [] row_data = new Object[1][activeProfile.getProfGenInfo().size()+2];
+		
+		//JTable erstellen
+		tbl_main = new JTable(row_data, col_names.toArray());
+		tbl_main.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		
+>>>>>>> refs/remotes/origin/develop_model
 		scp_main.setViewportView(tbl_main);
 		
 /** Kontextmenü

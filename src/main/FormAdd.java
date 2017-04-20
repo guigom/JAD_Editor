@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
@@ -84,8 +85,6 @@ public class FormAdd extends JDialog {
 		System.out.println(p.getProfOU().toString());
 		frm_add.add(cbo_ou);
 		
-		//String variable
-		this.group_cache = "";
 		
 		JButton btn_grp = new JButton("Gruppen...");
 		btn_grp.addMouseListener(new MouseAdapter() {
@@ -149,15 +148,34 @@ public class FormAdd extends JDialog {
 					aL.add(addText[i].getText());
 					if (addText[i].getText().equalsIgnoreCase(""))
 					{
-						missing.add(p.getProfGenInfo().get(i));
+						missing.add(Converter.getStringFront(p.getProfGenInfo().get(i)));
 						attr_full = false;
 					}
 				}
+	
+				if (!attr_full)
+				{
+					String missAttr = "";
+					for (String x:missing)
+					{
+						missAttr = missAttr + x + "\n";
+					}
+				      int reply = JOptionPane.showConfirmDialog(null,
+				    		  "Folgende Attribute wurden nicht eingegeben:\n\n"
+				    		  + missAttr
+				    		  + "\n\nTrotzdem fortfahren?"
+				    		  , "Warnung", 
+				               JOptionPane.YES_NO_OPTION);
+				      if (reply == JOptionPane.YES_OPTION) {
+				         attr_full=true;
+				      }
+				}
 				
-				
-				
-				user_cache = new User(aL,group_cache,Converter.getStringBack(p.getProfOU().get(selectedCbo)));
-				setVisible(false);
+				if (attr_full)
+				{
+					user_cache = new User(aL,group_cache,Converter.getStringBack(p.getProfOU().get(selectedCbo)));
+					setVisible(false);
+				}
 			//	System.out.println(user.getUserGenInfo().toString() + "\n" + user.getUserOU() + "\n" + user.getUserGroup());
 			//	p.addALUser(user);
 			}

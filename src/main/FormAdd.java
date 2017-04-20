@@ -139,11 +139,23 @@ public class FormAdd extends JDialog {
 		btn_add.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
+				boolean attr_full = true;
 				ArrayList<String> aL = new ArrayList<>();
+				ArrayList<String> missing = new ArrayList<>();
+				
 				for (int i = 0;i<addText.length;i++)
 				{
 					aL.add(addText[i].getText());
+					if (addText[i].getText().equalsIgnoreCase(""))
+					{
+						missing.add(p.getProfGenInfo().get(i));
+						attr_full = false;
+					}
 				}
+				
+				
+				
 				user_cache = new User(aL,group_cache,Converter.getStringBack(p.getProfOU().get(selectedCbo)));
 				setVisible(false);
 			//	System.out.println(user.getUserGenInfo().toString() + "\n" + user.getUserOU() + "\n" + user.getUserGroup());

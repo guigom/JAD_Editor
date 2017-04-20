@@ -1,0 +1,17 @@
+_desc
+Profil für die Domäne Ost-AG-S1.tr.loc
+_attr
+Nachname,Name
+Vorname,Surname
+Titel,Title
+Login Name,SamAccountName
+Beschreibung,Description
+Abteilung,Department
+_ou
+Abteilungsleitung,"OU=Abteilungsleitung,DC=tr,DC=loc"
+Qualitätsmanagment,"OU=Qualitätsmanagment,DC=tr,DC=loc"
+Maschine,"OU=Maschine,DC=tr,DC=loc"
+_groups
+Abteilungsleitung,"CN=Abteilungsleitung,OU=Abteilungsleitung,DC=tr,DC=loc"
+Qualitätsmanagment,"CN=Qualitätsmanagment,OU=Qualitätsmanagment,DC=tr,DC=loc"
+Maschine,"CN=Maschine,OU=Maschine,DC=tr,DC=loc"

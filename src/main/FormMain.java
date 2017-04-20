@@ -137,10 +137,10 @@ public class FormMain extends JFrame {
 		scp_main.setBounds(12, 16, 780, 704);
 		frm_main.add(scp_main);
 		
-<<<<<<< HEAD
+// <<<<<<< HEAD
 		tbl_main = new JTable(TestTableContent.getTestStringArray(),
 				TestArrayTableHeader.getTestStringHeaderArray());
-=======
+//=======
 		//Zusammensetzen des Headers für die JTable
 		ArrayList<String> col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
 		col_names.add("Gruppe");	//fixe Werte
@@ -154,7 +154,7 @@ public class FormMain extends JFrame {
 		tbl_main.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		
->>>>>>> refs/remotes/origin/develop_model
+//>>>>>>> refs/remotes/origin/develop_model
 		scp_main.setViewportView(tbl_main);
 		
 /** Kontextmenü
@@ -175,25 +175,27 @@ public class FormMain extends JFrame {
 		context.addSeparator();
 // erzeuge Menüeintrag
 		JMenuItem	cCopy	= new JMenuItem("Copy");
-		//tbl_main.add(cCopy);
+		context.add(cCopy);
+// 
 		
 		cCopy.addActionListener( e-> {
 			System.out.printf("Ausgabe cCopy %s%n", e.getActionCommand() );
 			// TODO: wen rufe ich hier auf?
 			//tbl_main.getSelectedColumns(); 
 		});
-// erzeuge weitere Menüeinträge 
-	    for ( String s : ("AEG Vampyrino SX,Electrolux Clario Z 1941," +
-                "Quelle Privileg Piccolino,Siemens Super T120VS12A00," +
-                "Hoover Micro Power Electronic,Rowenta dymbo").split(",") )
+// erzeuge weitere, zufällige Menüeinträge 
+	    for ( String s : ("das sind dummy einräge," +
+                "zweiter Eintrag," +
+                "dritter eintrag, vierter Eintrag").split(",") )
 		{
-		 context.add( new AbstractAction(s) {
-		   @Override public void actionPerformed( ActionEvent e ) {
-		     tbl_main.addRowSelectionInterval(1, 3) ;
-		     System.out.println("FormMain.FormMain(...).new AbstractAction() {...}.actionPerformed()");
+//		 context.add( new AbstractAction(s) {
+//		   @Override public void actionPerformed( ActionEvent e ) {
+////		     tbl_main.addRowSelectionInterval(1, 3) ;
+//			 System.out.println( tbl_main.getColumnName(tbl_main.getSelectedColumn()) );  
+//		     System.out.println("FormMain.FormMain(...).new AbstractAction() {...}.actionPerformed()");
 					//.append( e.getActionCommand() + "\n" );
-		   }
-		 } );
+//		   }
+//		 } );
 		}
 		// füge das Kontextmenü der Tabelle hinzu.
 //		tbl_main.add(context);
@@ -212,10 +214,11 @@ public class FormMain extends JFrame {
 					context.show( e.getComponent(), e.getX(), e.getY() );
 			}
 			public void mousePressed(MouseEvent e){
-//				if ( e.getButton()==MouseEvent.BUTTON1 ){
-//					System.out.printf("MouseEvent: %h %s%n", e.getSource(),
-//							((JTable)e.getSource()).getTableHeader());
-//				}
+				if ( e.getButton()==MouseEvent.BUTTON1 ){
+//					System.out.printf("MouseEvent: %h %s%n", e.getSource(),	((JTable)e.getSource()).getTableHeader());
+					 System.out.println( tbl_main.getColumnName(tbl_main.getSelectedColumn()) );
+				     System.out.println("FormMain.FormMain(...).new AbstractAction() {...}.actionPerformed()");
+				}
 //				if ( e.getButton()==MouseEvent.BUTTON3 ){
 //					Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
 //					Transferable trans = cb.getContents(null);

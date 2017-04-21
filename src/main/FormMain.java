@@ -46,7 +46,7 @@ public class FormMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FormMain frame = new FormMain(new Profil(".\\prof\\Profil1.prof"));
+					FormMain frame = new FormMain(new Profil("./prof/Profil1.prof"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -257,18 +257,18 @@ public class FormMain extends JFrame {
 		
 		if(activeProfile.getALUSER().size()==0)
 		{
-<<<<<<< HEAD
-			row_cache = new ArrayList<String>(activeProfile.getALUSER().get(i).getUserGenInfo());
-			row_cache.add(activeProfile.getALUSER().get(i).getUserGroup());
-			row_cache.add(activeProfile.getALUSER().get(i).getUserOU());
-			row_data [i]= row_cache.toArray(); 
-		}
-		System.out.println(row_data[0][0]);
-		ArrayList<String> col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
-		col_names.add("Gruppe");	//fixe Werte
-		col_names.add("OU");		
-
-=======
+////<<<<<<< HEAD
+//			row_cache = new ArrayList<String>(activeProfile.getALUSER().get(i).getUserGenInfo());
+//			row_cache.add(activeProfile.getALUSER().get(i).getUserGroup());
+//			row_cache.add(activeProfile.getALUSER().get(i).getUserOU());
+//			row_data [i]= row_cache.toArray(); 
+//		}
+//		System.out.println(row_data[0][0]);
+//		ArrayList<String> col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
+//		col_names.add("Gruppe");	//fixe Werte
+//		col_names.add("OU");		
+//
+//=======
 		//Zusammensetzen des Headers für die JTable
 				col_names = new ArrayList<String>(Converter.getStringFront(activeProfile.getProfGenInfo()));
 				col_names.add("Gruppe");	//fixe Werte
@@ -298,7 +298,7 @@ public class FormMain extends JFrame {
 			col_names.add("Gruppe");	//fixe Werte
 			col_names.add("OU");		
 		}	
->>>>>>> refs/remotes/origin/develop_model
+//>>>>>>> refs/remotes/origin/develop_model
 		tbl_main = new JTable(row_data, col_names.toArray());
 		scp_main.setViewportView(tbl_main);
 		System.out.println("Tabelleninhalt: " + tbl_main.getModel().getValueAt(0, 0));

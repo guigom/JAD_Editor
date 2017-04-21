@@ -81,10 +81,7 @@ public class Converter
 		String				zeile		= "";
 		int					counter		= 0;
 		
-		//Erste Zeile
-		dateiInhalt.add("#TYPE Microsoft.ActiveDirectory.Management.ADUser");
-		
-		//Zweite Zeile, Attribute des Profils
+		//Erste Zeile, Attribute des Profils
 		for(String attr: activeProfile.getProfGenInfo())
 		{
 			//Anzeigename abschneiden
@@ -93,7 +90,7 @@ public class Converter
 			zeile+=("\""+attr+"\""+",");
 		}
 		//TODO: Einträge für Gruppen und OU erstellen
-		zeile+=("\"PrimaryGroup\",\"Path\"");
+		zeile+=("\"PrimaryGroup\",\"Path\",\"objectClass\",\"dn\"");
 		//Zeile schreiben
 		dateiInhalt.add(zeile);
 		
@@ -109,7 +106,7 @@ public class Converter
 				zeile+=("\""+attr+"\",");
 			}
 			//Guppe und OU anfügen
-			zeile+=(nutzer.getUserGroup()+","+nutzer.getUserOU());
+			zeile+=(nutzer.getUserGroup()+","+nutzer.getUserOU()+",\"user\",\"CN="+nutzer.getUserGenInfo().get(activeProfile.getProfGenInfo().indexOf("Login Name,SamAccountName"))+","+nutzer.getUserOU().substring(1));
 			//Zeile schreiben
 			dateiInhalt.add(zeile);
 		}

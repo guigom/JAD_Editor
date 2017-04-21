@@ -82,7 +82,6 @@ public class FormAdd extends JDialog {
 				 //test.setText(path_profiles.get(selectedChoice.getSelectedIndex()));
 			}
 		});
-		System.out.println(p.getProfOU().toString());
 		frm_add.add(cbo_ou);
 		
 		
@@ -176,8 +175,6 @@ public class FormAdd extends JDialog {
 					user_cache = new User(aL,group_cache,Converter.getStringBack(p.getProfOU().get(selectedCbo)));
 					setVisible(false);
 				}
-			//	System.out.println(user.getUserGenInfo().toString() + "\n" + user.getUserOU() + "\n" + user.getUserGroup());
-			//	p.addALUser(user);
 			}
 		});
 		

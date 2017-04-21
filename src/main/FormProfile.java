@@ -65,44 +65,33 @@ public class FormProfile extends JFrame {
 			
 			try {
 				path_profiles_manipulate.set(i, path_profiles_manipulate.get(i).substring(7, path_profiles_manipulate.get(i).length()-5));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			}
+			} catch (Exception e) {}
 			
 		}
 		JComboBox cbo_profiles = new JComboBox(path_profiles_manipulate.toArray());
 		cbo_profiles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 JComboBox selectedChoice = (JComboBox) e.getSource();
-				 System.out.println(selectedChoice.getSelectedIndex());
-				 System.out.println(path_profiles.get(selectedChoice.getSelectedIndex()));
-				 //test.setText(path_profiles.get(selectedChoice.getSelectedIndex()));
 				 try {
 					profile_alldata = Reader.readFile(path_profiles.get(cbo_profiles.getSelectedIndex()));
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				 txt_desc.setText(profile_alldata.get(1));
 			}
 		});
 		cbo_profiles.setBounds(12, 16, 482, 32);
-		//test System.out.println(cbo_profiles.getSelectedIndex());
-		//     System.out.println(path_profiles.get(cbo_profiles.getSelectedIndex()));
 		frm_profile.add(cbo_profiles);
 		
 		
 		JButton btn_ok = new JButton("OK");
 		btn_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		/////////////
 				setVisible(false);
 				dispose();
 				try {
 					profile_cache = new Profil(path_profiles.get(cbo_profiles.getSelectedIndex()));
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				EventQueue.invokeLater(new Runnable() {
@@ -115,16 +104,11 @@ public class FormProfile extends JFrame {
 						}
 					}
 				});
-		//////////////
 			}
 		});
 		btn_ok.setBounds(366, 305, 128, 32);
 		frm_profile.add(btn_ok);
-		
-		//gelesene Datei (1. Durchlauf)
 		profile_alldata = Reader.readFile(path_profiles.get(cbo_profiles.getSelectedIndex()));
-		
-		//JTextArea txt_desc = new JTextArea();
 		txt_desc.setText(profile_alldata.get(1));
 		txt_desc.setBackground(UIManager.getColor("Label.background"));
 		txt_desc.setBounds(12, 61, 342, 276);

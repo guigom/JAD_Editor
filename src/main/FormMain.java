@@ -81,16 +81,8 @@ public class FormMain extends JFrame {
 				form.setVisible(true);
 				while(form.isVisible());
 				if(form.getUser()!=null)activeProfile.addALUser(form.getUser());
-				//ArrayList<String> col_cache = new ArrayList<String>(form.getUser().getUserGenInfo());
-				//col_cache.add(form.getUser().getUserOU());
-				//col_cache.add(form.getUser().getUserGroup());
-				//tbl_main.getModel().insertRow(tbl_main.getRowCount(),col_cache.toArray());
-				//tbl_main.add(col_cache.toArray());
 				alter_table();
 				form.dispose();
-				//System.out.println(activeProfile.getALUSER().get(0).getUserGenInfo().toString());
-				//System.out.print(activeProfile.getALUSER().get(0).getUserGroup());
-				//System.out.print(activeProfile.getALUSER().get(0).getUserOU());
 			}
 		});
 		btn_add.setBounds(816, 16, 192, 40);
@@ -104,7 +96,6 @@ public class FormMain extends JFrame {
 		btn_del.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int rowIndex = tbl_main.getSelectedRow();
-				System.out.println(rowIndex);
 				activeProfile.removeALUser(activeProfile.getALUSER().get(rowIndex));
 				alter_table();
 			}
@@ -177,10 +168,9 @@ public class FormMain extends JFrame {
 				//JTable erstellen
 				tbl_main = new JTable(row_data, col_names.toArray());
 		
-		}		//System.out.println("testtesttest" + activeProfile.getALUSER().size());
+		}
 		else
-		{	//activeProfile.getALUSER().size();
-			
+		{
 			row_data = new Object[activeProfile.getALUSER().size()][activeProfile.getProfGenInfo().size()+2];
 			for(int i =0; i<activeProfile.getALUSER().size(); i++)
 			{
@@ -189,14 +179,11 @@ public class FormMain extends JFrame {
 				row_cache.add(activeProfile.getALUSER().get(i).getUserOU());
 				row_data [i]= row_cache.toArray(); 
 			}
-			System.out.println(row_data[0][0]);
 			col_names = new ArrayList<String>(activeProfile.getProfGenInfo());
 			col_names.add("Gruppe");	//fixe Werte
 			col_names.add("OU");		
 		}	
 		tbl_main = new JTable(row_data, col_names.toArray());
 		scp_main.setViewportView(tbl_main);
-		System.out.println("Tabelleninhalt: " + tbl_main.getModel().getValueAt(0, 0));
-
 	}
 }

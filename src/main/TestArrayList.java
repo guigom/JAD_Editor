@@ -20,7 +20,6 @@ public class TestArrayList {
 			arrayUser.add(String.format("true"));
 			User user = new User(arrayUser, "OU","Group");
 			array.add(user);
-			//System.out.printf("%s\n",array.get(i-1).getUserGenInfo().toString());
 		}
 		return array;
 		

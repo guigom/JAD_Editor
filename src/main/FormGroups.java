@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ListSelectionModel;
 
 public class FormGroups extends JDialog {
 
@@ -59,9 +60,8 @@ public class FormGroups extends JDialog {
 		frm_groups.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(frm_groups);
 		frm_groups.setLayout(null);
-		System.out.println(p.getProfGroups().toString());
-		
 		JList lst_groups = new JList(p.getProfGroups().toArray());
+		lst_groups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		lst_groups.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		lst_groups.setBounds(12, 13, 344, 394);
@@ -72,7 +72,6 @@ public class FormGroups extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				String selected = (String) lst_groups.getSelectedValue();
-				System.out.println(Converter.getStringBack(selected));
 				groupChoose = Converter.getStringBack(selected);
 				setVisible(false);
 			}

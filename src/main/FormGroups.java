@@ -1,8 +1,5 @@
 package main;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,42 +7,26 @@ import javax.swing.JList;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ListSelectionModel;
 
+/**
+ * Klasse für die Gruppenauswahl-Form
+ */
 public class FormGroups extends JDialog {
 
 	private JPanel frm_groups;
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					FormGroups frame = new FormGroups(TestProfil.getTestProfil());
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 * @return 
-	 * @return 
-	 */
-	//Variable
 	private String groupChoose;
 	
 	//Getter
 	public String	getGroup(){return this.groupChoose;}
 	
+	/**
+	 * Konstruktor für das Gruppenauswahlfenster
+	 * @param p Das aktuelle Profil für die Gruppeninformationen
+	 */
 	public FormGroups(Profil p) {
 		//Modal machen (In VorderGrund halten)
 		this.setModal(true);
@@ -60,6 +41,7 @@ public class FormGroups extends JDialog {
 		frm_groups.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(frm_groups);
 		frm_groups.setLayout(null);
+		//Erzeugen der JList-Komponente in der die zu auswählenden Gruppen stehen
 		JList lst_groups = new JList(p.getProfGroups().toArray());
 		lst_groups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -67,10 +49,12 @@ public class FormGroups extends JDialog {
 		lst_groups.setBounds(12, 13, 344, 394);
 		frm_groups.add(lst_groups);
 		
+		//Button zum BEstätigen der ausgewählten Gruppe
 		JButton btn_ok = new JButton("OK");
 		btn_ok.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				//Gruppe wird ausgewählt
 				String selected = (String) lst_groups.getSelectedValue();
 				groupChoose = Converter.getStringBack(selected);
 				setVisible(false);

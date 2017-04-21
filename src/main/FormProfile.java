@@ -1,6 +1,4 @@
 package main;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
@@ -9,16 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * Klasse für die Profilauswahl-Form
+ */
 public class FormProfile extends JFrame {
 
 	ArrayList<String> profile_alldata;
@@ -27,7 +24,7 @@ public class FormProfile extends JFrame {
 	private JPanel frm_profile;
 
 	/**
-	 * Launch the application.
+	 * Startet das Programm
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,8 +40,8 @@ public class FormProfile extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
-	 * @throws IOException 
+	 * Konstruktor für die Profil-Form
+	 * @throws IOException Falls kein Profilordner vorhanden ist.
 	 */
 	public FormProfile() throws IOException {
 		setResizable(false);
@@ -83,7 +80,7 @@ public class FormProfile extends JFrame {
 		cbo_profiles.setBounds(12, 16, 482, 32);
 		frm_profile.add(cbo_profiles);
 		
-		
+		//OK Button zum erzeugen des Profil-Objekts
 		JButton btn_ok = new JButton("OK");
 		btn_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -97,6 +94,7 @@ public class FormProfile extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
+							//Erzeugt die Main-Form mit dem angelegten Profil-Objekt
 							FormMain frame = new FormMain(profile_cache);
 							frame.setVisible(true);
 						} catch (Exception e) {

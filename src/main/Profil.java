@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * huihih
- * @author Johannes Jakuscheit
- *
+ * Profil-Klasse
  */
 public class Profil
 {
@@ -26,7 +24,11 @@ public class Profil
 	public void addALUser		(User newUser)	{this.aLUser.add(newUser);}
 	public void removeALUser	(User delUser)	{this.aLUser.remove(delUser);}
 	
-	//Konstruktor
+	/**
+	 * Konstruktor für das Profil-Onjekt.
+	 * @param path Path-Objekt zur .prof-Datei.
+	 * @throws IOException Falls die Datei nicht gelesen werden kann.
+	 */
 	Profil(String path) throws IOException
 	{
 		//Profildatei zwischenspeichern

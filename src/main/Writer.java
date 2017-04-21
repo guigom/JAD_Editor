@@ -7,13 +7,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Writer-Klasse zum schreiben in eine Datei
+ */
 public class Writer 
 {
 	
 	/**
-	 * 
-	 * @param path
-	 * @param content
+	 * Statische Methode zum schreiben in eine Datei.
+	 * @param path Die zu schreibende Datei mit Pfad.
+	 * @param c Die ArrayList<String> mit den zu schreibenden Inhalt.
 	 */
 	public static void writeFile(String path, ArrayList<String> c)
 	{

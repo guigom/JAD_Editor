@@ -1,14 +1,11 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
@@ -16,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 
@@ -27,22 +23,6 @@ public class FormMain extends JFrame {
 	private JTable tbl_main;
 	private JScrollPane scp_main;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormMain frame = new FormMain(new Profil(".\\prof\\Profil1.prof"));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	//profil
 	private Profil activeProfile;
 	
@@ -50,12 +30,13 @@ public class FormMain extends JFrame {
 	
 	
 	/**
-	 * Create the frame.
-	 * Bearbeitet 7.04, alle Buttons "rufen etwas auf". 
-	 * 
+	 * Konstruktor für die Main-Form.
+	 * Benötigt ein Profil-Objekt für die JTable-Komponente.
+	 * @param selectedProfile Das Profil-Objekt aus der FormProfile.
 	 */
 	public FormMain(Profil selectedProfile) {
-		//profil übernehmen
+		
+		//Profil übernehmen
 		this.activeProfile=selectedProfile;
 		
 		
@@ -70,8 +51,7 @@ public class FormMain extends JFrame {
 		frm_main.setLayout(null);
 		
 		
-		// Button add: 
-		// ruft FormAdd.java auf 
+		//Button zum aufrufen der FormAdd
 		JButton btn_add = new JButton("Eintrag hinzuf\u00FCgen");
 		btn_add.setIcon(new ImageIcon("./img/Plus-32.png"));
 		btn_add.addActionListener(new ActionListener() {
@@ -87,10 +67,8 @@ public class FormMain extends JFrame {
 		});
 		btn_add.setBounds(816, 16, 192, 40);
 		frm_main.add(btn_add);
-		
-		// Button enfernen: 
-		// ruft erstamal (!) FormAdd.java auf.  
-		// 
+		 
+		//Erzeugt den Entfernen-Button. Ermöglicht das Entfernen eines EIntrags im JTable
 		JButton btn_del = new JButton("Eintrag entfernen");
 		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
 		btn_del.addActionListener(new ActionListener() {
@@ -103,6 +81,7 @@ public class FormMain extends JFrame {
 		btn_del.setBounds(816, 72, 192, 40);
 		frm_main.add(btn_del);
 		
+		//Button zum exportieren der .csv-Datei
 		JButton btn_export = new JButton("Export");
 		btn_export.addMouseListener(new MouseAdapter() {
 			@Override
@@ -114,7 +93,7 @@ public class FormMain extends JFrame {
 		btn_export.setBounds(814, 680, 192, 40);
 		frm_main.add(btn_export);
 		
-		// About - Fenster
+		// Erzeugt das About-Fenster
 		JButton btn_about = new JButton("About");
 		btn_about.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -147,7 +126,9 @@ public class FormMain extends JFrame {
 		
 		scp_main.setViewportView(tbl_main);
 	}
-	
+	/**
+	 * Methode zum Abgleich des JTables mit der User-ArrayList des Profils
+	 */
 	public void alter_table()
 	{
 		ArrayList<String> row_cache;

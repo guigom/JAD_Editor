@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Reader-Klasse zum auslesen der Profildatei.
+ */
 public class Reader 
 {
 

@@ -2,6 +2,9 @@ package main;
 
 import java.util.ArrayList;
 
+/**
+ * User-Klasse für das Profil
+ */
 public class User 
 {
 	//Variablen
@@ -19,7 +22,12 @@ public class User
 	public void					setUserOU(String userOU)			{this.userOU=userOU;}
 	
 	
-	//Konstruktor mit allen Parametern
+	/**
+	 * Konstruktor für das User-Objekt.
+	 * @param aLUser ArrayList<String> für die Attribute der User.
+	 * @param group String mit der Gruppe.
+	 * @param oUnit String mit der OU.
+	 */
 	User(ArrayList<String> aLUser, String group, String oUnit)
 	{
 		this.userGenInfo 	= aLUser;
@@ -27,7 +35,10 @@ public class User
 		this.userOU			= oUnit;
 	}
 	
-	//Überladener Konstruktor nur mit GenInfo
+	/**
+	 * Überladener Konstruktor
+	 * @param aLUser ArrayList<String> mit den Attributen.
+	 */
 	User(ArrayList<String> aLUser)
 	{
 		this.userGenInfo 	= aLUser;

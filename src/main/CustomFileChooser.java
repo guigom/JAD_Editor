@@ -6,9 +6,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Klasse die Teile der JFileCHooser-Klasse überschreibt
+ */
 public class CustomFileChooser extends JFileChooser {
 	  private String extension;
 	  
+	  /**
+	   * Konstruktor für den CustomFileChooser
+	   * @param extension Die Dateierweiterung für den JFileChooser
+	   */
 	  public CustomFileChooser(String extension) {
 	    super();
 	    this.extension = extension;
@@ -17,7 +24,10 @@ public class CustomFileChooser extends JFileChooser {
 	    this.setAcceptAllFileFilterUsed(false);
 
 	  }
-	
+	/**
+	 * Überschreibt die getSelectedFile-Methode vom JFileChooser.
+	 * @return Das ausgewählte FIle-Objekt.
+	 */
 	  @Override public File getSelectedFile() {
 	    File selectedFile = super.getSelectedFile();
 
@@ -31,6 +41,9 @@ public class CustomFileChooser extends JFileChooser {
 	    return selectedFile;
 	  }
 
+	  /**
+	   * Überschreibt die approveSelection-Methode mit einem Custom-Dialog.
+	   */
 	  @Override public void approveSelection() {
 	    if (getDialogType() == SAVE_DIALOG) {
 	      File selectedFile = getSelectedFile();

@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 
@@ -16,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
@@ -25,6 +22,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+/**
+ * Die Klasse für den JFrame welches das Formular zum hinzufügen
+ * von neuen Einträgen ermöglicht.
+ */
 public class FormAdd extends JDialog {
 	
 	private String group_cache;
@@ -36,27 +37,11 @@ public class FormAdd extends JDialog {
 	private int selectedCbo;
 	
 	private JPanel frm_add;
-	/**
-	 * Launch the application.
-	 */
-	
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormAdd frame = new FormAdd(TestProfil.getTestProfil());
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
+/**
+ * Konstruktor für die Add-Form
+ * @param p Das nötige Profil-Objekt für die Attribute
+ */
 	public FormAdd(Profil p) {
 		//Modal machen (In VorderGrund halten)
 		this.setModal(true);
@@ -72,6 +57,7 @@ public class FormAdd extends JDialog {
 		setContentPane(frm_add);
 		frm_add.setLayout(null);
 		
+		//Erzeugen der JComboBox zur Auswahl der OUs.
 		JComboBox cbo_ou = new JComboBox(p.getProfOU().toArray());
 		cbo_ou.setBounds(14, 384, 256, 32);
 		//cbo_ou.addItem(item);
@@ -84,7 +70,7 @@ public class FormAdd extends JDialog {
 		});
 		frm_add.add(cbo_ou);
 		
-		
+		//Ereugen des Buttons für die Gruppenauswahl.
 		JButton btn_grp = new JButton("Gruppen...");
 		btn_grp.addMouseListener(new MouseAdapter() {
 			@Override
@@ -107,6 +93,8 @@ public class FormAdd extends JDialog {
 		btn_grp.setBounds(286, 384, 192, 32);
 		frm_add.add(btn_grp);
 		
+		//Anlegen von dem OK-Button
+
 		JButton btn_add = new JButton("OK");
 		btn_add.setBounds(286, 432, 192, 32);
 		frm_add.add(btn_add);
@@ -118,6 +106,7 @@ public class FormAdd extends JDialog {
 		JLabel[] addLabel = new JLabel[p.getProfGenInfo().size()];
 		JTextField[] addText = new JTextField[p.getProfGenInfo().size()];
 		
+		//Durchläuft alle JTextFields für die Informationen der Attribute
 		for (int i =0;i<p.getProfGenInfo().size();i++)
 		{
 			String zwischen = p.getProfGenInfo().get(i);
@@ -129,6 +118,7 @@ public class FormAdd extends JDialog {
 			addText[i].setColumns(1);
 		}
 		
+		//Erzeugt eine JScrollPane zur Flexibilität
 		JScrollPane scp_add = new JScrollPane(pnl_add);
 		scp_add.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scp_add.setBounds(12, 13, 466, 358);
@@ -145,13 +135,14 @@ public class FormAdd extends JDialog {
 				for (int i = 0;i<addText.length;i++)
 				{
 					aL.add(addText[i].getText());
+					//Prüft ob ein JTextField leer ist
 					if (addText[i].getText().equalsIgnoreCase(""))
 					{
 						missing.add(Converter.getStringFront(p.getProfGenInfo().get(i)));
 						attr_full = false;
 					}
 				}
-	
+				//Falls ein JTextFIeld leer ist, wird eine Fehlermeldung generiert
 				if (!attr_full)
 				{
 					String missAttr = "";

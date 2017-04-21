@@ -1,47 +1,24 @@
 package main;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
-import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Klasse für das About-Fenster.
+ */
 public class FormAbout extends JFrame {
 
 	public JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormAbout frame = new FormAbout();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Konstruktor für die About-Form.
 	 */
 	public FormAbout() {
 		setAlwaysOnTop(true);
@@ -54,21 +31,22 @@ public class FormAbout extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		/**
+		 * Button zum shcließen der About-Form
+		 */
 		JButton btn_ok = new JButton("OK");
 		btn_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btn_ok.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				dispose();
-			}
-		});
+
 		btn_ok.setBounds(398, 306, 96, 32);
 		contentPane.add(btn_ok);
 		
+		/**
+		 * JLabel mit den Entwicklern
+		 */
 		JTextArea txt_1 = new JTextArea();
 		txt_1.setBackground(UIManager.getColor("Label.background"));
 		txt_1.setEditable(false);
@@ -76,6 +54,9 @@ public class FormAbout extends JFrame {
 		txt_1.setBounds(12, 13, 482, 95);
 		contentPane.add(txt_1);
 		
+		/**
+		 * JLabel mit Text für weitere Informationen
+		 */
 		JTextArea txt_2 = new JTextArea();
 		txt_2.setText("Icons by\r\nhttp://www.icon8.com");
 		txt_2.setEditable(false);

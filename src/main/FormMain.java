@@ -38,8 +38,7 @@ public class FormMain extends JFrame {
 		
 		//Profil übernehmen
 		this.activeProfile=selectedProfile;
-		
-		
+				
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./img/logo.png"));
 		setTitle("JAD Editor");
 		setResizable(false);
@@ -60,15 +59,16 @@ public class FormMain extends JFrame {
 				
 				form.setVisible(true);
 				while(form.isVisible());
-				if(form.getUser()!=null)activeProfile.addALUser(form.getUser());
-				alter_table();
+					if(form.getUser()!=null)activeProfile.addALUser(form.getUser());
+						alter_table();
 				form.dispose();
 			}
 		});
 		btn_add.setBounds(816, 16, 192, 40);
 		frm_main.add(btn_add);
 		 
-		//Erzeugt den Entfernen-Button. Ermöglicht das Entfernen eines EIntrags im JTable
+		// Erzeugt den Entfernen-Button. 
+		// Ermöglicht das Entfernen eines Eintrags im JTable
 		JButton btn_del = new JButton("Eintrag entfernen");
 		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
 		btn_del.addActionListener(new ActionListener() {
@@ -91,17 +91,27 @@ public class FormMain extends JFrame {
 		});
 		btn_export.setIcon(new ImageIcon("./img/Share 3-32.png"));
 		btn_export.setBounds(814, 680, 192, 40);
+		
 		frm_main.add(btn_export);
 		
 		// Erzeugt das About-Fenster
 		JButton btn_about = new JButton("About");
-		btn_about.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		
+		// statt als anoyme Klasse, kannst Du den Action Listener des 
+		// "About"- Buttons auch als Lambda Ausdruck implementieren. 
+		
+//		btn_about.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				FormAbout form = new FormAbout();
+//				form.setVisible(true);
+//				//tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
+//			}
+//		});
+		btn_about.addActionListener( e -> {
 				FormAbout form = new FormAbout();
 				form.setVisible(true);
 				//tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
-			}
-		});
+			});
 		btn_about.setIcon(new ImageIcon("./img/Info-32.png"));
 		btn_about.setBounds(814, 624, 192, 40);
 		frm_main.add(btn_about);

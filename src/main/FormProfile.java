@@ -10,6 +10,8 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
@@ -80,7 +82,9 @@ public class FormProfile extends JFrame {
 		cbo_profiles.setBounds(12, 16, 482, 32);
 		frm_profile.add(cbo_profiles);
 		
-		//OK Button zum erzeugen des Profil-Objekts
+		// OK Button 
+		// Erzeugen des Profil-Objekts
+		// Erzeugen des Hauptfensters FormMain
 		JButton btn_ok = new JButton("OK");
 		btn_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -103,7 +107,37 @@ public class FormProfile extends JFrame {
 					}
 				});
 			}
-		});
+		}); // End ActionListener
+		// TODO: Enen KeyListener für den OK Button. 
+		class MyKeyListener implements KeyListener
+		{
+			public void keyPressed( KeyEvent e ) {	}
+			public void keyTyped( KeyEvent e ) {	}
+			public void keyReleased( KeyEvent e ) {
+				System.out.printf( "Taste mit keyCode=%d ('%c') wurde gedrückt. %n", 
+						e.getKeyCode(), e.getKeyChar());
+				setVisible(false);
+				dispose();
+				try {
+					profile_cache = new Profil(path_profiles.get(cbo_profiles.getSelectedIndex()));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							//Erzeugt die Main-Form mit dem angelegten Profil-Objekt
+							FormMain frame = new FormMain(profile_cache);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					
+			}
+		} // class MyKeyListener
+		btn_ok.addKeyListener( new MyKeyListener() );
+		
 		btn_ok.setBounds(366, 305, 128, 32);
 		frm_profile.add(btn_ok);
 		profile_alldata = Reader.readFile(path_profiles.get(cbo_profiles.getSelectedIndex()));

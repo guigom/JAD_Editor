@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
  */
 public class SelectFile {
 	/**
-	 * Methode zum speichern der Datei.
-	 * @param a Die ArrayList<String> die in die Datei geschrieben wird.
+	 * Methode zum Speichern der Datei.
+	 * @param a : Die ArrayList<String> die in die Datei geschrieben wird.
 	 */
 	public static void saveFile(ArrayList<String> a)
 	{
@@ -27,5 +27,4 @@ public class SelectFile {
 			JOptionPane.showMessageDialog(null, "Keine Datei ausgewählt. Es wird nichts exportiert.");
 		}
 	}
-
-}
+} 

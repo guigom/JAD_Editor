@@ -15,6 +15,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class FormMain extends JFrame {
@@ -52,6 +54,12 @@ public class FormMain extends JFrame {
 		
 		//Button zum aufrufen der FormAdd
 		JButton btn_add = new JButton("Eintrag hinzuf\u00FCgen");
+		btn_add.addKeyListener( new KeyAdapter() {
+      public void keyPressed(KeyEvent e) {
+			if (e.getKeyCode() == KeyEvent.VK_ENTER)
+          btn_add.doClick();
+      }
+		});
 		btn_add.setIcon(new ImageIcon("./img/Plus-32.png"));
 		btn_add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -70,6 +78,12 @@ public class FormMain extends JFrame {
 		// Erzeugt den Entfernen-Button. 
 		// Ermöglicht das Entfernen eines Eintrags im JTable
 		JButton btn_del = new JButton("Eintrag entfernen");
+		btn_del.addKeyListener( new KeyAdapter() {
+      public void keyPressed(KeyEvent e) {
+			if (e.getKeyCode() == KeyEvent.VK_ENTER)
+          btn_del.doClick();
+      }
+		});
 		btn_del.setIcon(new ImageIcon("./img/Minus-32.png"));
 		btn_del.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -88,6 +102,13 @@ public class FormMain extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				SelectFile.saveFile(Converter.formatUser(activeProfile));
 			}
+		});
+		btn_export.addKeyListener( new KeyAdapter() {
+      public void keyPressed(KeyEvent e) {
+			if (e.getKeyCode() == KeyEvent.VK_ENTER)
+          btn_export.doClick();
+					SelectFile.saveFile(Converter.formatUser(activeProfile));
+      }
 		});
 		btn_export.setIcon(new ImageIcon("./img/Share 3-32.png"));
 		btn_export.setBounds(814, 680, 192, 40);
@@ -108,6 +129,13 @@ public class FormMain extends JFrame {
 //			}
 //		});
 		btn_about.addActionListener( e -> {
+			FormAbout form = new FormAbout();
+			form.setVisible(true);
+			//tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
+		});
+		// TODO 
+		btn_about.addActionListener( e -> {
+			if ( e.get
 				FormAbout form = new FormAbout();
 				form.setVisible(true);
 				//tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
@@ -136,6 +164,7 @@ public class FormMain extends JFrame {
 		
 		scp_main.setViewportView(tbl_main);
 	}
+	
 	/**
 	 * Methode zum Abgleich des JTables mit der User-ArrayList des Profils
 	 */
@@ -147,14 +176,13 @@ public class FormMain extends JFrame {
 		
 		if(activeProfile.getALUSER().size()==0)
 		{
-		//Zusammensetzen des Headers für die JTable
+				//Zusammensetzen des Headers für die JTable
 				col_names = new ArrayList<String>(Converter.getStringFront(activeProfile.getProfGenInfo()));
 				col_names.add("Gruppe");	//fixe Werte
 				col_names.add("OU");		
 				
 				//Leeres 2 Dimensionales Array zur 1. Darstellung
 				row_data = new Object[1][activeProfile.getProfGenInfo().size()+2];
-				
 				
 				//JTable erstellen
 				tbl_main = new JTable(row_data, col_names.toArray());

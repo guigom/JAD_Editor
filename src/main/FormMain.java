@@ -1,11 +1,15 @@
 package main;
 
 import java.awt.EventQueue;
+import java.awt.Point;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
@@ -133,13 +137,13 @@ public class FormMain extends JFrame {
 			form.setVisible(true);
 			//tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
 		});
-		// TODO 
-		btn_about.addActionListener( e -> {
-			if ( e.get
-				FormAbout form = new FormAbout();
-				form.setVisible(true);
-				//tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
-			});
+//		// TODO "allgemeine Enter-Funktion" einfügen.
+//		btn_about.addActionListener( e -> {
+//			if ( e.get
+//				FormAbout form = new FormAbout();
+//				form.setVisible(true);
+//				//tbl_main = new JTable(TestTableContent.getTestStringArray(),TestArrayTableHeader.getTestStringHeaderArray());
+//			});
 		btn_about.setIcon(new ImageIcon("./img/Info-32.png"));
 		btn_about.setBounds(814, 624, 192, 40);
 		frm_main.add(btn_about);
@@ -161,7 +165,63 @@ public class FormMain extends JFrame {
 		tbl_main = new JTable(row_data, col_names.toArray());
 		tbl_main.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
-		
+		// Kontextmenü
+	// TODO: MenuBar folgt später.  
+			JPopupMenu pop = new JPopupMenu(); 
+			// erster Eintrag
+			JMenuItem mCopy	= new JMenuItem("copy");
+			mCopy.setMnemonic('C'); //KeyEvent.VK_COPY);
+			mCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
+					KeyEvent.CTRL_DOWN_MASK));
+			// der Eintrag braucht eine funktion: 
+			mCopy.addActionListener( e-> {
+				System.out.printf("Menu Copy %s%n", e.getActionCommand() );
+				
+				int row = 0; 
+				Point p = tbl_main.getMousePosition();
+//				p.
+				if ( tbl_main.isCellSelected( (int) p.getX(), (int) p.getY() ))
+				//if ( tbl_main.isCellSelected( (int) p.getX(), (int) p.getY() ))
+						System.out.printf("In dieser Zelle: %d, %d %n", 
+								tbl_main.getSelectedRow(), tbl_main.getSelectedColumn());
+				//tbl_main.getCell
+			});
+			pop.add(mCopy);
+			// zweiter 
+			JMenuItem mCut	= new JMenuItem("cut");
+			mCut.setMnemonic(	KeyEvent.VK_C);
+			mCut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
+					KeyEvent.CTRL_DOWN_MASK));
+			pop.add(mCut);
+			// dritter 
+			JMenuItem mPaste	= new JMenuItem("paste"); 
+			mPaste.setMnemonic(KeyEvent.VK_P);
+			mPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,
+					KeyEvent.CTRL_DOWN_MASK));
+			pop.add(mPaste);
+			tbl_main.setComponentPopupMenu(pop);
+			// zeige Popup bei MouseClick
+			class MyMouseAdapter extends MouseAdapter {
+
+				@Override
+				public void mousePressed(MouseEvent e)
+				{
+					if ( e.getButton()==MouseEvent.BUTTON1 ){
+						System.out.printf("MouseEvent: %h Zeile,Spalte: %d,%d%n", e.getSource(),
+//								((JTextField)e.getSource()).getText());
+								tbl_main.getSelectedRow(), tbl_main.getSelectedColumn());
+								
+					}
+					if ( e.getButton()==MouseEvent.BUTTON3 ){
+						System.out.println("Irgendwas");
+					}
+				}
+				
+			}
+			// setzte das Fenster "visible" 
+			MyMouseAdapter ma = new MyMouseAdapter();
+			tbl_main.addMouseListener(ma);
+
 		scp_main.setViewportView(tbl_main);
 	}
 	
